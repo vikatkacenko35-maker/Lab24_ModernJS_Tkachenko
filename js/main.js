@@ -154,13 +154,128 @@
 // console.log(Utils.greet("Мария"));
 // console.log("Умножение:", Utils.multiply(3, 9));
 
-// 4. Импортируйте всё это в main.js
-import { square, cube, E } from "./math.js";
+// // 4. Импортируйте всё это в main.js
+// import { square, cube, E } from "./math.js";
 
-// 5. Протестируйте функции
-console.log(" Тест math.js");
-console.log("Квадрат числа 5:", square(5));
-console.log("Куб числа 3:", cube(3));
-console.log("Куб числа 4:", cube(4));
-console.log("Константа E:", E);
-console.log("Квадрат E:", square(E));
+// // 5. Протестируйте функции
+// console.log(" Тест math.js");
+// console.log("Квадрат числа 5:", square(5));
+// console.log("Куб числа 3:", cube(3));
+// console.log("Куб числа 4:", cube(4));
+// console.log("Константа E:", E);
+// console.log("Квадрат E:", square(E));
+
+// console.log("Промисы");
+
+// const simplePromise = new Promise((resolve, reject) => {
+//     const success = true;
+//     if (success) {
+//         resolve("Операция выполнена успешно!");
+//     } else {
+//         reject("Произошла ошибка!");
+//     }
+// });
+// simplePromise
+//     .then((result) => console.log("Результат:", result))
+//     .catch((error) => console.log("Ошибка:", error));
+
+// function delay(ms) {
+//     return new Promise((resolve) => {
+//         setTimeout(() =>{
+//             resolve(`пРОШЛО ${ms} миллисекунд`);
+//         }, ms);
+//     });
+// }
+// delay(1000)
+// .then((message) => console.log(message));
+
+// function fetchUserData(userId) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             if (userId > 0) {
+//                 resolve({ id: userId, name: "Алиса", email: "dfgfg@mail.com" });
+//             } else {
+//                 reject("некорректный ID пользователя");
+//             }
+//         }, 1500);
+//     });
+// }
+// fetchUserData(1)
+//     .then((user) => console.log("Пользователь:", user))
+//     .catch((error) => console.log("Ошибка:", error));
+
+// function step1() {
+//     return new Promise((resolve) => {
+//         setTimeout(() => resolve("Шаг 1 завершен"), 500);
+//     });
+// }
+
+// function step2(previousResult) {
+//     return new Promise((resolve) => {
+//         setTimeout(() => resolve(`${previousResult} -> Шаг 2 завершен`), 500);
+//     });
+// }
+
+// function step3(previousResult) {
+//     return new Promise((resolve) => {
+//         setTimeout(() => resolve(`${previousResult} -> Шаг 3 завершен`), 500);
+//     });
+// }
+// step1()
+//     .then((result1) => step2(result1))
+//     .then((result2) => step3(result2))
+//     .then((finalResult) => console.log("Результат:", finalResult))
+//     .catch((error) => console.log("Ошибка в цепочке", error));
+
+// 1. Создайте функцию checkInventory, которая возвращает промис
+function checkInventory(product, quantity) {
+    return new Promise((resolve, reject) => {
+        const inventory = {
+            "ноутбук": 10,
+            "телефон": 0,
+            "наушники": 5,
+            "клавиатура": 0
+        };
+        
+        setTimeout(() => {
+            const stock = inventory[product.toLowerCase()];
+            
+            if (stock !== undefined && stock >= quantity) {
+                resolve(`Товар "${product}" есть в наличии (${stock} шт.). Заказано: ${quantity} шт.`);
+            } 
+            // 3. Если товара нет — reject с ошибкой
+            else if (stock !== undefined && stock === 0) {
+                reject(`Ошибка: Товар "${product}" отсутствует`);
+            }
+            else if (stock !== undefined && stock < quantity) {
+                reject(`Ошибка: Товара "${product}" недостаточно. В наличии только ${stock} шт.`);
+            }
+            else {
+                reject(`Ошибка: Товар "${product}" не найден`);
+            }
+        }, 1000);
+    });
+}
+
+// 4. Используйте .then() и .catch() для обработки результата
+console.log("\n=== Проверка наличия товаров ===\n");
+
+checkInventory("ноутбук", 3)
+    .then((message) => console.log(message))
+    .catch((error) => console.log(error));
+
+checkInventory("телефон", 1)
+    .then((message) => console.log(message))
+    .catch((error) => console.log(error));
+
+checkInventory("наушники", 2)
+    .then((message) => console.log(message))
+    .catch((error) => console.log(error));
+
+checkInventory("клавиатура", 1)
+    .then((message) => console.log(message))
+    .catch((error) => console.log(error));
+
+checkInventory("мышь", 1)
+    .then((message) => console.log(message))
+    .catch((error) => console.log(error));
