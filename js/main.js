@@ -99,16 +99,68 @@
 // const updated = { ...person, age: 31, occupation: "Developer" };
 // console.log("Обновлённый объект:", updated);
 
-console.log("Rest оператор");
-function sum(...numbers) {
-    return numbers.reduce((total, num) => total + num, 0);
-}
-console.log("Сумма 1,2,3:", sum(1, 2, 3));
-console.log("Сумма 1,2,3,4,5:", sum(1, 2, 3, 4, 5));
+// console.log("Rest оператор");
+// function sum(...numbers) {
+//     return numbers.reduce((total, num) => total + num, 0);
+// }
+// console.log("Сумма 1,2,3:", sum(1, 2, 3));
+// console.log("Сумма 1,2,3,4,5:", sum(1, 2, 3, 4, 5));
 
-const numbers = [10,20,30,40,50];
+// const numbers = [10,20,30,40,50];
 
-const [first, second, ...rest] = numbers;
-console.log("Первое число:", first);
-console.log("Второе число:", second);
-console.log("Остальные числа:", rest);
+// const [first, second, ...rest] = numbers;
+// console.log("Первое число:", first);
+// console.log("Второе число:", second);
+// console.log("Остальные числа:", rest);
+
+// 1. Создайте два массива чисел
+// const numbers1 = [10, 20, 30];
+// const numbers2 = [40, 50, 60];
+
+// // 2. Объедините их с помощью spread
+// const combinedNumbers = [...numbers1, ...numbers2];
+// console.log("Объединённый массив:", combinedNumbers);
+
+// // 3. Создайте функцию findMax, которая принимает любое количество чисел (rest) и возвращает максимальное
+// function findMax(...numbers) {
+//     return Math.max(...numbers);
+// }
+
+// console.log("Максимальное из (10, 20, 30):", findMax(10, 20, 30));
+// console.log("Максимальное из (5, 15, 25, 35, 45):", findMax(5, 15, 25, 35, 45));
+// console.log("Максимальное из объединённого массива:", findMax(...combinedNumbers));
+
+// // 4. Создайте два объекта и объедините их
+// const obj1 = {
+//     brand: "Apple",
+//     model: "MacBook Pro"
+// };
+
+// const obj2 = {
+//     price: 120000,
+//     year: 2024
+// };
+
+// const combinedObjects = { ...obj1, ...obj2 };
+// console.log("Объединённый объект:", combinedObjects);
+// import { greet, add, PI } from './utils.js';
+// console.log("Модули");
+// console.log(greet("Алексей"));
+// console.log("5 + 3 =", add(5, 3));
+// console.log("Значение PI:", PI);
+// import { multiply as умножить } from "./utils.js";
+// console.log("4 * 7 =", умножить(4, 7));
+// import * as Utils from "./utils.js";
+// console.log(Utils.greet("Мария"));
+// console.log("Умножение:", Utils.multiply(3, 9));
+
+// 4. Импортируйте всё это в main.js
+import { square, cube, E } from "./math.js";
+
+// 5. Протестируйте функции
+console.log(" Тест math.js");
+console.log("Квадрат числа 5:", square(5));
+console.log("Куб числа 3:", cube(3));
+console.log("Куб числа 4:", cube(4));
+console.log("Константа E:", E);
+console.log("Квадрат E:", square(E));
